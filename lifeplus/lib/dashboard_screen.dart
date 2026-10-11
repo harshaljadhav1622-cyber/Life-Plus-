@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'health_profile_screen.dart';
 import 'health_history_screen.dart';
 import 'health_insights_screen.dart';
+import 'reminders_screen.dart';
 
 const Color primaryTeal = Color(0xFF087F8C);
 const Color deepTeal = Color(0xFF07545B);
@@ -228,10 +229,14 @@ class DashboardScreen extends StatelessWidget {
                                 icon: Icons.notifications_active_rounded,
                                 title: 'Reminders',
                                 subtitle: 'Stay on track',
-                                onTap: () => _showComingSoon(
-                                  context,
-                                  'Health reminders',
-                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const RemindersScreen(),
+                                    ),
+                                  );
+                                },
                               ),
                               _actionCard(
                                 icon: Icons.lightbulb_rounded,
