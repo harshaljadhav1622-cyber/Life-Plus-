@@ -6,6 +6,9 @@ import 'health_profile_screen.dart';
 import 'health_history_screen.dart';
 import 'health_insights_screen.dart';
 import 'reminders_screen.dart';
+import 'health_assessment_screen.dart';
+import 'emergency_health_card_screen.dart';
+import 'emergency_qr_scanner_screen.dart';
 
 const Color primaryTeal = Color(0xFF087F8C);
 const Color deepTeal = Color(0xFF07545B);
@@ -199,6 +202,20 @@ class DashboardScreen extends StatelessWidget {
                             childAspectRatio: wide ? 1.65 : 1.30,
                             children: [
                               _actionCard(
+                                icon: Icons.qr_code_scanner_rounded,
+                                title: 'Scan Emergency QR',
+                                subtitle: 'Read medical details offline',
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          const EmergencyQrScannerScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              _actionCard(
                                 icon: Icons.person_rounded,
                                 title: 'My Profile',
                                 subtitle: 'Personal details',
@@ -252,6 +269,37 @@ class DashboardScreen extends StatelessWidget {
                                   );
                                 },
                               ),
+
+                              _actionCard(
+                                icon: Icons.health_and_safety_rounded,
+                                title: 'Health Assessment',
+                                subtitle: 'Personalized wellness overview',
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          const HealthAssessmentScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+
+                              _actionCard(
+                                icon: Icons.emergency_rounded,
+                                title: 'Emergency Health Card',
+                                subtitle: 'Medical ID and offline QR',
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          const EmergencyHealthCardScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+
                               _actionCard(
                                 icon: Icons.local_hospital_rounded,
                                 title: 'Find a Doctor',

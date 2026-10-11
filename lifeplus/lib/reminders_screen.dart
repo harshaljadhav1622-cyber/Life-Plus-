@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'notification_service.dart';
+
 const Color reminderTeal = Color(0xFF087F8C);
 const Color reminderBackground = Color(0xFFF5F8FA);
 const Color reminderDark = Color(0xFF172B36);
@@ -175,7 +177,9 @@ class _RemindersScreenState extends State<RemindersScreen> {
                     }
 
                     try {
-                      await _remindersRef.add({
+                      final reminderRef = _remindersRef.doc();
+
+                      await reminderRef.set({
                         'title': title,
                         'notes': notesController.text.trim(),
                         'type': selectedType,
@@ -183,6 +187,20 @@ class _RemindersScreenState extends State<RemindersScreen> {
                         'isCompleted': false,
                         'createdAt': FieldValue.serverTimestamp(),
                       });
+
+                      // Schedule a local notification on Android.
+                      try {
+                        await NotificationService.scheduleReminder(
+                          reminderId: reminderRef.id,
+                          title: title,
+                          type: selectedType,
+                          reminderAt: reminderDateTime,
+                        );
+                      } catch (notificationError) {
+                        debugPrint(
+                          'Notification scheduling failed: $notificationError',
+                        );
+                      }
 
                       if (dialogContext.mounted) {
                         Navigator.pop(dialogContext);
@@ -253,6 +271,12 @@ class _RemindersScreenState extends State<RemindersScreen> {
 
     try {
       await _remindersRef.doc(reminderId).delete();
+
+      try {
+        await NotificationService.cancelReminder(reminderId);
+      } catch (notificationError) {
+        debugPrint('Notification cancellation failed: $notificationError');
+      }
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(
