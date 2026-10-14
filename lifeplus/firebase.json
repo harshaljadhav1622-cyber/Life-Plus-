@@ -1,1 +1,1 @@
-{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"lifeplus-5aeee","configurations":{"web":"1:1067870882773:web:741ab7b2878460da260b5c"}}}}}}
+{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"lifeplus-5aeee","configurations":{"android":"1:1067870882773:android:6e5269bafa8d76cf260b5c","web":"1:1067870882773:web:741ab7b2878460da260b5c"}}},"android":{"default":{"projectId":"lifeplus-5aeee","appId":"1:1067870882773:android:6e5269bafa8d76cf260b5c","fileOutput":"android/app/google-services.json"}}}}}

@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -7,15 +6,25 @@ import 'app_theme.dart';
 import 'auth_gate.dart';
 import 'notification_service.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  debugPrint('LIFEPLUS 1: main started');
 
-  await NotificationService.initialize();
+  try {
+    debugPrint('LIFEPLUS 2: Initializing Firebase');
 
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    debugPrint('LIFEPLUS 3: Firebase initialized');
+  } catch (e, stackTrace) {
+    debugPrint('LIFEPLUS ERROR: $e');
+    debugPrintStack(stackTrace: stackTrace);
+  }
+
+  debugPrint('LIFEPLUS 4: Calling runApp');
   runApp(const LifePlusApp());
 }
 

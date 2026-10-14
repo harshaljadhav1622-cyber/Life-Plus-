@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067870882773",
+    "project_id": "lifeplus-5aeee",
+    "storage_bucket": "lifeplus-5aeee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067870882773:android:6e5269bafa8d76cf260b5c",
+        "android_client_info": {
+          "package_name": "com.example.lifeplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQjkTRGXkBTwNkOuWQRJk-ryGoresPCmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
